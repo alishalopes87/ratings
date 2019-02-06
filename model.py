@@ -23,6 +23,11 @@ class User(db.Model):
     age = db.Column(db.Integer, nullable=True)
     zipcode = db.Column(db.String(15), nullable=True)
 
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return f"<User user_id={self.user_id} email={self.email}>"
+
 class Movie(db.Model):
     """Ratable movies"""
 
@@ -31,7 +36,7 @@ class Movie(db.Model):
     movie_id  = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=True)
     released_at = db.Column(db.DateTime, nullable=True)
-    imdb_url = db.Column(db.String(200), nullable=True, unique=True)
+    imdb_url = db.Column(db.String(200), nullable=True)
 
 class Rating(db.Model):
     """User submitted ratings"""
