@@ -47,7 +47,7 @@ def load_movies():
         released_at_formatted = datetime.strptime(released_at, "%d-%b-%Y")
 
         # remove parenthetical data from each title
-        title_no_date = title[:-6]
+        title_no_date = title[:-7]
 
 
         movie = Movie(movie_id=movie_id,
