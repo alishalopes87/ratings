@@ -7,7 +7,14 @@
     Ratings
     <hr>
 
-    {% block content %} put your content here {% endblock %}
+{% block body %} 
+    <ul class=flashes>
+    {% for message in get_flashed_messages() %}
+    <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock body %}
 
 </body>
 </html>

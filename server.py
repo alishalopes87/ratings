@@ -25,7 +25,7 @@ def index():
 
     return render_template("homepage.html")
 
-@app.route('login')
+@app.route('/login', methods=['POST'])
 def login():
     """Add user to session"""
 
@@ -34,19 +34,28 @@ def login():
 
     # check if email in db
     try:
-        email_exists = User.query.filter(User.email == email).one()
+        User.query.filter(User.email == email).one()
 
         # check if already logged in via session
-        if username in session:
-            session['username'] = username
-            session['password'] = password
+        if email in session:
 
-            flash("You're already logged in as {}".format(username))
+            flash("You're already logged in as {}".format(email))
+            return render_template('homepage.html')
 
         else:
+            user = User.query.filter(User.email == email).one()
+            if user.password == password:
+
+                session['email'] = email
+                session['password'] = password
+
+            flash("Successfully logged in")
+
+            return render_template("homepage.html")
             # validate pw via pw in database
 
     except:
+        return redirect("/register")
         # redirect to register
 
 
