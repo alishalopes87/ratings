@@ -25,6 +25,64 @@ def index():
 
     return render_template("homepage.html")
 
+@app.route('login')
+def login():
+    """Add user to session"""
+
+    email = request.form['username']
+    password = request.form['password']
+
+    # check if email in db
+    try:
+        email_exists = User.query.filter(User.email == email).one()
+
+        # check if already logged in via session
+        if username in session:
+            session['username'] = username
+            session['password'] = password
+
+            flash("You're already logged in as {}".format(username))
+
+        else:
+            # validate pw via pw in database
+
+    except:
+        # redirect to register
+
+
+@app.route('/users')
+def user_list():
+    """Show list of users."""
+
+    users = User.query.all()
+    return render_template("user_list.html",
+                            users=users)
+
+@app.route('/register', methods=["GET"])
+def register_form():
+    """Recieve user information"""
+
+    return render_template("register_form.html")
+
+@app.route('/register', methods=["POST"])
+def register_process():
+    """Add user information to database"""
+
+    email = request.form["email"]
+    password = request.form['password']
+
+    try:
+        User.query.filter(User.email == email ).one()
+    
+    except:
+        user = User(email=email,
+                    password=password)
+        
+        db.session.add(user)
+        db.session.commit()
+
+    return redirect("/")
+
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
