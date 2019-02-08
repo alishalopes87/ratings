@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ age }}
+    <br>
+    {{ zipcode }}
+    <br>
+    <ul>
+    {% for movie in movies %}
+        <li>{{ movie }}</li>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}

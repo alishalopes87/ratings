@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
 
 <h1>Ratings</h1>
 
-<h2>Movies</h2>
 <div>
     <form action="/login" method="POST">
 
@@ -12,13 +13,18 @@
 
         Password:
         <input type="text" name="password">
-        <input type="submit">
-        
+        <input type="submit" name="login" value="Log in">
     </form>
+    <form action="/logout">
+        <input type="submit" name="logout" value="Logout">
+    </form>
+
 </div>
+
+<h2>Movies</h2>
 <p><a href="/movies"> </a>View all movies</p>
 
 <h2>Users</h2>
-<p <a href="/users">View all users</a></p>
+<p> <a href="/users">View all users</a></p>
 
 {% endblock %}

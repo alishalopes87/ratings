@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ratings</title>
+    
+        <title>Ratings</title>
+        
 </head>
 <body>
-    Ratings
     <hr>
 
-{% block body %} 
+{% block flash %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
     <ul class=flashes>
-    {% for message in get_flashed_messages() %}
+        {% for message in messages %}
     <li>{{ message }}</li>
     {% endfor %}
     </ul>
+    {% endif %}
+{% endwith %}
+{% endblock %}
 
-{% endblock body %}
+{% block content %} 
+
+{% endblock %}
 
 </body>
 </html>
